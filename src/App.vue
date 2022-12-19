@@ -1,36 +1,16 @@
 <script setup>
-import {reactive} from 'vue';
-import WivcHeader from './components/WivcHeader.vue';
-import CottageListing from './components/CottageListing.vue';
-
-const state = reactive({
-  cottages: []
-});
-
-const modules = import.meta.glob('./data/cottages/**', {import: 'default'})
-for (const path in modules) {
-  modules[path]().then((mod) => {
-    const name = path.replace(/(\.\/data\/cottages\/|\.js)/g, '')
-    state.cottages.push({
-      name,
-      ...mod
-    });
-  });
-}
+  import WivcHeader from './components/WivcHeader.vue';
 </script>
 
 <template>
   <wivc-header/>
-  <cottage-listing
-    v-for="(cottage, index) in state.cottages"
-    :cottage="cottage"
-    :key="cottage.name"
-    :id="`section-${index}`"
-  />
+  <main class="antialiased bg-gray-200 font-sans flex align-items-center justify-content-center flex-wrap">
+    <router-view></router-view>
+  </main>
 </template>
 
 <style>
-html {
-  scroll-behavior: smooth;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 </style>

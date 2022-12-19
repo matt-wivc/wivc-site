@@ -1,5 +1,11 @@
 <script setup>
-import background from '../assets/waupoos.jpeg'
+import {ref, watchEffect} from 'vue';
+
+const background = ref()
+watchEffect(async () => {
+  background.value = (await import(/* @vite-ignore */ `/waupoos.jpeg`)).default
+})
+
 </script>
 
 <template>
@@ -8,8 +14,9 @@ import background from '../assets/waupoos.jpeg'
     <div class="hero-content text-center text-neutral-content">
       <div class="max-w-md">
         <h1 class="mb-5 text-5xl font-bold title">Waupoos Island View Cottages</h1>
-        <p class="mb-5">
-          Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+        <p class="mb-5">Lakefront cottages, in Waupoos, off Smiths Bay.
+          Enjoy your personal dock for leisure, swimming, fishing and more.
+          End your evening with a campfire at your personal fire pit.
         </p>
       </div>
     </div>
