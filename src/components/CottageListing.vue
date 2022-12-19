@@ -3,9 +3,9 @@ import {
     defineProps,
     ref,
 } from 'vue';
-import TheAmanda from '/cards/The Amanda.jpeg';
-import TheMatthew from '/cards/The Matthew.jpeg';
-import TheEthan from '/cards/The Ethan.jpeg';
+import TheAmanda from '../assets/cards/The Amanda.jpeg';
+import TheMatthew from '../assets/cards/The Matthew.jpeg';
+import TheEthan from '../assets/cards/The Ethan.jpeg';
 
 const props = defineProps({
   cottage: Object
