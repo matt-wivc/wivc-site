@@ -2,23 +2,26 @@
 import {
     defineProps,
     ref,
-    watchEffect
 } from 'vue';
+import TheAmanda from '/cards/The Amanda.jpeg';
+import TheMatthew from '/cards/The Matthew.jpeg';
+import TheEthan from '/cards/The Ethan.jpeg';
 
 const props = defineProps({
   cottage: Object
 })
 
-const cardHero = ref()
-watchEffect(async () => {
-  cardHero.value = (await import(/* @vite-ignore */ `/card/${props.cottage.name}.jpeg`)).default
-})
+const heroes = ref({
+    ['The Amanda']: TheAmanda,
+    ['The Matthew']: TheMatthew,
+    ['The Ethan']: TheEthan,
+});
 </script>
 
 <template>
     <div class="max-w-sm w-full sm:w-1/2 lg:w-1/3 py-6 px-3">
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-            <div class="bg-cover bg-center h-56 p-4" :style="`background-image: url('${cardHero}')`">
+            <div class="bg-cover bg-center h-56 p-4" :style="`background-image: url('${heroes[cottage.name]}')`">
             </div>
             <div class="p-4">
                 <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{ cottage.name }}</p>

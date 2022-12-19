@@ -1,11 +1,6 @@
 <script setup>
 import {ref, watchEffect} from 'vue';
-
-const background = ref()
-watchEffect(async () => {
-  background.value = (await import(/* @vite-ignore */ `/waupoos.jpeg`)).default
-})
-
+import background from '/waupoos.jpeg';
 </script>
 
 <template>
