@@ -1,29 +1,36 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import {reactive} from 'vue';
+import WivcHeader from './components/WivcHeader.vue';
+import CottageListing from './components/CottageListing.vue';
+
+const state = reactive({
+  cottages: []
+});
+
+const modules = import.meta.glob('./data/cottages/**', {import: 'default'})
+for (const path in modules) {
+  modules[path]().then((mod) => {
+    const name = path.replace(/(\.\/data\/cottages\/|\.js)/g, '')
+    state.cottages.push({
+      name,
+      ...mod
+    });
+  });
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <wivc-header/>
+  <cottage-listing
+    v-for="(cottage, index) in state.cottages"
+    :cottage="cottage"
+    :key="cottage.name"
+    :id="`section-${index}`"
+  />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style>
+html {
+  scroll-behavior: smooth;
 }
 </style>
