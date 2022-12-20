@@ -1,10 +1,9 @@
 <script setup>
-import {ref, watchEffect} from 'vue';
-import background from '/waupoos.jpeg';
+const baseURL = import.meta.env.BASE_URL;
 </script>
 
 <template>
-  <div class="hero min-h-screen" :style="`background-image: url('${background}');`">
+  <div class="hero min-h-screen" :style="`background-image: url('${baseURL}waupoos.jpeg');`">
     <div class="hero-overlay bg-opacity-80"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="max-w-md">
