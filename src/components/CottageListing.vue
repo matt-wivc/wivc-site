@@ -12,8 +12,9 @@ const baseURL = import.meta.env.BASE_URL;
 <template>
     <div class="container max-w-sm w-full sm:w-1/2 lg:w-1/3 py-6 px-3">
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-            <div class="bg-cover bg-center h-56 p-4" :style="`background-image: url('${baseURL}cards/${cottage.name}.png')`">
-            </div>
+            <a :href="cottage.airbnb" target="_blank">
+                <div class="bg-cover bg-center h-56 p-4" :style="`background-image: url('${baseURL}cards/${cottage.name}.png')`"></div>
+            </a>
             <div class="p-4">
                 <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{ cottage.name }}</p>
                 <p class="text-3xl text-gray-900">{{ cottage.price }} / night</p>
