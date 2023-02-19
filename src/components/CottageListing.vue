@@ -1,19 +1,22 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
+import {useImage} from '../composeable/use-image';
 import Icon from './Icon.vue';
 
 const props = defineProps({
   cottage: Object
 });
+const {image} = useImage();
 
-const baseURL = import.meta.env.BASE_URL;
+const imagePath = ref(`cards/${props.cottage.name}`);
+const headerStyle = ref(`background-image: url('${image(imagePath.value)}`);
 </script>
 
 <template>
     <div class="container max-w-sm w-full sm:w-1/2 lg:w-1/3 py-6 px-3">
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-            <a :href="cottage.airbnb" target="_blank">
-                <div class="bg-cover bg-center h-56 p-4" :style="`background-image: url('${baseURL}cards/${cottage.name}.png')`"></div>
+            <a :href="`${cottage.airbnb}?modal=PHOTO_TOUR_SCROLLABLE`" target="_blank">
+                <div class="bg-cover bg-center h-56 p-4" :style="headerStyle"></div>
             </a>
             <div class="p-4">
                 <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{ cottage.name }}</p>

@@ -1,9 +1,11 @@
 <script setup>
-const baseURL = import.meta.env.BASE_URL;
+import {useImage} from '../composeable/use-image';
+
+const {image} = useImage();
 </script>
 
 <template>
-  <div class="hero" :style="`background-image: url('${baseURL}waupoos.png');`">
+  <div class="hero" :style="`background-image: url('${image('waupoos')}');`">
     <div class="hero-overlay bg-opacity-80"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="max-w-md">
