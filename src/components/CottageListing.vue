@@ -10,7 +10,7 @@ const baseURL = import.meta.env.BASE_URL;
 </script>
 
 <template>
-    <div class="max-w-sm w-full sm:w-1/2 lg:w-1/3 py-6 px-3">
+    <div class="container max-w-sm w-full sm:w-1/2 lg:w-1/3 py-6 px-3">
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
             <div class="bg-cover bg-center h-56 p-4" :style="`background-image: url('${baseURL}cards/${cottage.name}.png')`">
             </div>
@@ -51,6 +51,9 @@ const baseURL = import.meta.env.BASE_URL;
 </template>
 
 <style scoped>
+.container {
+    min-height: calc(100vh - 750px);
+}
 .airbnb {
   background-color: #fd5c63;
   color: white;
